@@ -1,14 +1,15 @@
-from langchain import LLMChain, PromptTemplate
-from langchain.llms import OpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
 import os
 
 # Load API key from .env
 from dotenv import load_dotenv
 load_dotenv()
-openai_api_key = os.getenv("OPENAI_API_KEY")
+gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 def provide_life_advice(goal):
-    llm = OpenAI(api_key=openai_api_key, temperature=0.7)
+    llm = ChatGoogleGenerativeAI(model="models/gemini-1.5-flash", google_api_key=gemini_api_key, temperature=0.7)
 
     prompt = PromptTemplate(
         input_variables=["goal"],

@@ -4,28 +4,31 @@ from calorie_calculator import calculate_calorie_intake
 
 # Define nodes for the workflow
 def generate_plan(state):
+    print("State in generate_plan:", state)  # Debug statement
     weight = state["weight"]
     gender = state["gender"]
     workout_goal = state["workout_goal"]
     workout_plan = generate_workout_plan(weight, gender, workout_goal)
-    return {"workout_plan": workout_plan}
+    return {**state, "workout_plan": workout_plan}
 
 def calculate_calories(state):
+    print("State in calculate_calories:", state)  # Debug statement
     weight = state["weight"]
     gender = state["gender"]
     workout_goal = state["workout_goal"]
     calorie_intake = calculate_calorie_intake(weight, gender, workout_goal)
-    return {"calorie_intake": calorie_intake}
+    return {**state, "calorie_intake": calorie_intake}
 
 def track_progress(state):
-    # Simulate progress tracking (e.g., user feedback)
+    print("State in track_progress:", state)
     feedback = state.get("feedback", "just right")
     if feedback == "hard":
-        return {"adjustment": "Reduce intensity for the next week."}
+        adjustment = "Reduce intensity for the next week."
     elif feedback == "easy":
-        return {"adjustment": "Increase intensity for the next week."}
+        adjustment = "Increase intensity for the next week."
     else:
-        return {"adjustment": "Keep the current plan."}
+        adjustment = "Keep the current plan."
+    return {**state, "adjustment": adjustment}
 
 # Define the workflow
 workflow = Graph()

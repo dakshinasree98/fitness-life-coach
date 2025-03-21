@@ -9,7 +9,7 @@ load_dotenv()
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 def generate_workout_plan(weight, gender, workout_type):
-    llm = ChatGoogleGenerativeAI(model="gemini-pro", google_api_key=gemini_api_key, temperature=0.7)
+    llm = ChatGoogleGenerativeAI(model="models/gemini-1.5-flash", google_api_key=gemini_api_key, temperature=0.7)
 
     prompt = PromptTemplate(
         input_variables=["weight", "gender", "workout_type"],
