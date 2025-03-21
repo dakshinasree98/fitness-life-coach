@@ -1,5 +1,5 @@
 google-generativeai 
-# langchain 
-# langgraph 
+langchain 
+langgraph 
 python-dotenv 
 streamlit
